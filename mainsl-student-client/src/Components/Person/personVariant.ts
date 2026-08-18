@@ -36,7 +36,7 @@ export const employeeVariant: PersonVariant = {
   personType: PersonType.Employee,
   theme: "blue",
 
-  detailsTitle: "Employee Details",
+  detailsTitle: "Student Details",
   addTitle: "Add Employee",
   editTitle: "Edit Employee",
   addSubmitLabel: "Add Employee",
@@ -44,5 +44,5 @@ export const employeeVariant: PersonVariant = {
   groupLabel: "Department",
   groupPlaceholder: "Department",
 
-  showCohortAndPhase: false,
+  showCohortAndPhase: true,
 };

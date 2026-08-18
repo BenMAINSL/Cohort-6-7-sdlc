@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import type { IPerson } from "../../Models/IPerson";
-import { PersonType } from "../../Models/IPersonType";
 import type { PersonVariant } from "./personVariant";
 import PersonAvatar from "./PersonAvatar";
 import { compressImage, formatBytes } from "../../utils/image";
@@ -57,6 +56,7 @@ export default function PersonFormModal({
   const handlePickImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const picked = e.target.files?.[0];
 
+    e.target.value = "";
     if (!picked) return;
 
     try {
@@ -87,7 +87,6 @@ export default function PersonFormModal({
     if (preview) URL.revokeObjectURL(preview);
 
     setImageFile(null);
-    setPreview(null);
     setImageNote(null);
   };
 
@@ -103,12 +102,12 @@ export default function PersonFormModal({
       setSaving(true);
       setError(null);
 
-      await onSave({ ...form, personType: PersonType.Student }, imageFile);
+      await onSave({ ...form, personType: variant.personType }, imageFile);
 
       if (preview) URL.revokeObjectURL(preview);
       onClose();
     } catch {
-      onClose();
+      setError("Failed to save. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -118,7 +117,7 @@ export default function PersonFormModal({
     <div className="student-modal-overlay" onClick={onClose}>
       <div className="student-modal" onClick={(e) => e.stopPropagation()}>
         <div className={`student-modal-header${themeClass}`}>
-          {mode === "edit" ? variant.editTitle : variant.addTitle}
+          {variant.addTitle}
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -244,7 +243,6 @@ export default function PersonFormModal({
               >
                 <option value="">Select...</option>
                 <option value="Male">Male</option>
-                <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -273,11 +271,7 @@ export default function PersonFormModal({
             </button>
 
             <button type="submit" className={`primary-btn${themeClass}`}>
-              {saving
-                ? "Saving..."
-                : mode === "edit"
-                  ? "Save Changes"
-                  : variant.addSubmitLabel}
+              {saving ? "Saving..." : variant.addSubmitLabel}
             </button>
           </div>
         </form>

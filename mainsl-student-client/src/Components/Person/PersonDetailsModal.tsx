@@ -39,6 +39,7 @@ export default function PersonDetailsModal({
       onClose();
     } catch {
       setError("Failed to delete. Please try again.");
+      setDeleting(false);
       setConfirmingDelete(false);
     }
   };
@@ -137,7 +138,7 @@ export default function PersonDetailsModal({
               <button
                 type="button"
                 className="close-btn"
-                onClick={() => setConfirmingDelete(false)}
+                onClick={() => setConfirmingDelete(true)}
                 disabled={deleting}
               >
                 Cancel

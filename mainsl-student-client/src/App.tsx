@@ -84,6 +84,7 @@ export default function Home() {
   ) => {
     if (studentFormMode === "edit") {
       await updateStudent(student);
+      if (imageFile) await uploadStudentImage(student.id, imageFile);
     } else {
       // The image endpoint is keyed on id, so the record has to exist first.
       const created = await addStudent(student);
@@ -106,6 +107,7 @@ export default function Home() {
   const openEditEmployee = (employee: IPerson) => {
     setEmployeeFormMode("edit");
     setEmployeeBeingEdited(employee);
+    setSelectedEmployee(null); // swap the details modal out for the form
     setEmployeeFormOpen(true);
   };
 
