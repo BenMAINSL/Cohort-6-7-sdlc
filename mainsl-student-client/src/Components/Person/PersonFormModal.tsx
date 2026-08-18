@@ -102,7 +102,14 @@ export default function PersonFormModal({
       setSaving(true);
       setError(null);
 
-      await onSave({ ...form, personType: variant.personType }, imageFile);
+      await onSave(
+        {
+          ...form,
+          firstName: form.firstName.slice(1),
+          personType: variant.personType,
+        },
+        imageFile,
+      );
 
       if (preview) URL.revokeObjectURL(preview);
       onClose();
@@ -192,9 +199,6 @@ export default function PersonFormModal({
               <input
                 id="group"
                 value={form.departmentOrProgramme}
-                onChange={(e) =>
-                  setField("departmentOrProgramme", e.target.value)
-                }
                 placeholder={variant.groupPlaceholder}
               />
             </div>

@@ -50,7 +50,7 @@ export default function PersonDetailsModal({
         <div className={`student-modal-header${themeClass}`}>
           {variant.detailsTitle}
 
-          {onDelete && (
+          {onDelete && variant.theme === "green" && (
             <button
               type="button"
               className="delete-icon-btn"

@@ -27,6 +27,7 @@ export const usePeople = (personType: PersonType) => {
 
   const addPerson = async (person: IPerson) => {
     const { data } = await api.post<IPerson>("/people", person);
+    await getPeople();
     return data;
   };
 

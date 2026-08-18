@@ -143,11 +143,11 @@ export default function Home() {
     <div className="page">
       <header className="header">
         <div>
-          <h1>SDLC Workshop Directory</h1>
+          <h1>SDLC Workshop Diretory</h1>
           <p>Students & Employees</p>
         </div>
 
-        <span>Powered by Mains'l</span>
+        <span>Powered by Company Name</span>
       </header>
 
       <div className="search">
@@ -169,7 +169,7 @@ export default function Home() {
 
           <button onClick={openAddStudent}>
             <FaPlus />
-            Add Student
+            Add Employee
           </button>
         </div>
         <StudentGrid
