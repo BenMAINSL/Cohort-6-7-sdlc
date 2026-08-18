@@ -55,15 +55,13 @@ export default function Home() {
     return students.filter((p) =>
       `${p.firstName} ${p.lastName} ${p.departmentOrProgramme}`
         .toLowerCase()
-        .includes(search.toLowerCase()),
+        .includes(search),
     );
   }, [students, search]);
 
   const filteredEmployees = useMemo(() => {
     return employees.filter((p) =>
-      `${p.firstName} ${p.lastName} ${p.departmentOrProgramme} ${p.email}`
-        .toLowerCase()
-        .includes(search.toLowerCase()),
+      p.firstName.toLowerCase().includes(search.toLowerCase()),
     );
   }, [employees, search]);
 
@@ -86,7 +84,6 @@ export default function Home() {
   ) => {
     if (studentFormMode === "edit") {
       await updateStudent(student);
-      if (imageFile) await uploadStudentImage(student.id, imageFile);
     } else {
       // The image endpoint is keyed on id, so the record has to exist first.
       const created = await addStudent(student);
@@ -109,7 +106,6 @@ export default function Home() {
   const openEditEmployee = (employee: IPerson) => {
     setEmployeeFormMode("edit");
     setEmployeeBeingEdited(employee);
-    setSelectedEmployee(null); // swap the details modal out for the form
     setEmployeeFormOpen(true);
   };
 
@@ -166,7 +162,7 @@ export default function Home() {
         <div className="sectionHeader">
           <div>
             <FaGraduationCap />
-            <h2>Students ({filteredStudents.length})</h2>
+            <h2>Students ({students.length})</h2>
           </div>
 
           <button onClick={openAddStudent}>
@@ -207,11 +203,6 @@ export default function Home() {
       />
 
       <StudentFormModal
-        key={
-          studentFormOpen
-            ? `${studentFormMode}-${studentBeingEdited?.id ?? "new"}`
-            : "closed"
-        }
         open={studentFormOpen}
         mode={studentFormMode}
         student={studentBeingEdited}

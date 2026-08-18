@@ -2,10 +2,10 @@ import api from "../api/api";
 
 /**
  * Keep uploads small — they are stored as rows in the database, and the
- * avatars are only ever rendered at 58px (card) / 90px (modal), so 224px
- * still leaves headroom for high-DPI screens.
+ * avatars are only ever rendered in a small circle on the card and in the
+ * details modal.
  */
-const MAX_DIMENSION = 224;
+const MAX_DIMENSION = 24;
 const MAX_BYTES = 25_000; // ~25 KB
 const QUALITY_STEPS = [0.72, 0.62, 0.52, 0.42, 0.35];
 

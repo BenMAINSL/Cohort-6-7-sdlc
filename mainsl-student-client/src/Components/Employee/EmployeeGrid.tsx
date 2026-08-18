@@ -22,9 +22,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
               {employee.firstName} {employee.lastName}
             </h3>
 
-            <span className="badgeEmployee">
-              {employee.departmentOrProgramme}
-            </span>
+            <span className="badgeEmployee">{employee.personType}</span>
 
             {/* Let the mailto link work without also opening the modal. */}
             <a

@@ -11,7 +11,7 @@ export default function PersonAvatar({ person, className, previewUrl }: Props) {
   const src = previewUrl ?? resolveImageUrl(person.imageUrl);
 
   const initials =
-    `${person.firstName?.[0] ?? ""}${person.lastName?.[0] ?? ""}`.toUpperCase();
+    `${person.firstName?.[1] ?? ""}${person.lastName?.[0] ?? ""}`.toUpperCase();
 
   return (
     <div className={className}>

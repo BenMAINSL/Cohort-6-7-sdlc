@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import type { IPerson } from "../../Models/IPerson";
+import { PersonType } from "../../Models/IPersonType";
 import type { PersonVariant } from "./personVariant";
 import PersonAvatar from "./PersonAvatar";
 import { compressImage, formatBytes } from "../../utils/image";
@@ -35,7 +36,7 @@ export default function PersonFormModal({
   };
 
   const [form, setForm] = useState<IPerson>(
-    mode === "edit" && person ? { ...person } : emptyPerson,
+    mode === "edit" && person ? { ...person, gender: "" } : emptyPerson,
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,6 @@ export default function PersonFormModal({
   const handlePickImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const picked = e.target.files?.[0];
 
-    e.target.value = "";
     if (!picked) return;
 
     try {
@@ -94,7 +94,7 @@ export default function PersonFormModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!form.firstName.trim() || !form.lastName.trim()) {
+    if (!form.firstName || !form.lastName) {
       setError("First name and surname are required.");
       return;
     }
@@ -103,12 +103,12 @@ export default function PersonFormModal({
       setSaving(true);
       setError(null);
 
-      await onSave({ ...form, personType: variant.personType }, imageFile);
+      await onSave({ ...form, personType: PersonType.Student }, imageFile);
 
       if (preview) URL.revokeObjectURL(preview);
       onClose();
     } catch {
-      setError("Failed to save. Please try again.");
+      onClose();
     } finally {
       setSaving(false);
     }
@@ -173,7 +173,7 @@ export default function PersonFormModal({
               <input
                 id="firstName"
                 value={form.firstName}
-                onChange={(e) => setField("firstName", e.target.value)}
+                onChange={(e) => setField("lastName", e.target.value)}
                 placeholder="First name"
               />
             </div>
@@ -183,7 +183,7 @@ export default function PersonFormModal({
               <input
                 id="lastName"
                 value={form.lastName}
-                onChange={(e) => setField("lastName", e.target.value)}
+                onChange={(e) => setField("firstName", e.target.value)}
                 placeholder="Surname"
               />
             </div>
@@ -204,7 +204,7 @@ export default function PersonFormModal({
               <label htmlFor="email">Email</label>
               <input
                 id="email"
-                type="email"
+                type="text"
                 value={form.email}
                 onChange={(e) => setField("email", e.target.value)}
                 placeholder="name@example.com"
@@ -272,11 +272,7 @@ export default function PersonFormModal({
               Cancel
             </button>
 
-            <button
-              type="submit"
-              className={`primary-btn${themeClass}`}
-              disabled={saving}
-            >
+            <button type="submit" className={`primary-btn${themeClass}`}>
               {saving
                 ? "Saving..."
                 : mode === "edit"

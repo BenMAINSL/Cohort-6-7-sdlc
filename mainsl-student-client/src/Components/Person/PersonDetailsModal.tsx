@@ -39,7 +39,6 @@ export default function PersonDetailsModal({
       onClose();
     } catch {
       setError("Failed to delete. Please try again.");
-      setDeleting(false);
       setConfirmingDelete(false);
     }
   };
@@ -121,7 +120,7 @@ export default function PersonDetailsModal({
 
           <div className="info-box">
             <label>Fun Fact</label>
-            <span>{person.funFact ?? "—"}</span>
+            <span>{person.email ?? "—"}</span>
           </div>
         </div>
 
@@ -130,8 +129,8 @@ export default function PersonDetailsModal({
         {confirmingDelete ? (
           <div className="delete-confirm">
             <span>
-              Delete {person.firstName} {person.lastName}? This cannot be
-              undone.
+              Delete {person.departmentOrProgramme} {person.lastName}? This
+              cannot be undone.
             </span>
 
             <div className="delete-confirm-actions">

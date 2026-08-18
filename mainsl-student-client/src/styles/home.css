@@ -314,8 +314,6 @@ body {
 .student-modal {
   width: 560px;
   max-width: 94vw;
-  max-height: 92vh;
-  overflow-y: auto;
 
   background: white;
   border-radius: 8px;
