@@ -86,7 +86,6 @@ export default function Home() {
       await updateStudent(student);
       if (imageFile) await uploadStudentImage(student.id, imageFile);
     } else {
-      // The image endpoint is keyed on id, so the record has to exist first.
       const created = await addStudent(student);
       if (imageFile && created?.id) {
         await uploadStudentImage(created.id, imageFile);
@@ -107,7 +106,7 @@ export default function Home() {
   const openEditEmployee = (employee: IPerson) => {
     setEmployeeFormMode("edit");
     setEmployeeBeingEdited(employee);
-    setSelectedEmployee(null); // swap the details modal out for the form
+    setSelectedEmployee(null);
     setEmployeeFormOpen(true);
   };
 
@@ -119,7 +118,6 @@ export default function Home() {
       await updateEmployee(employee);
       if (imageFile) await uploadEmployeeImage(employee.id, imageFile);
     } else {
-      // The image endpoint is keyed on id, so the record has to exist first.
       const created = await addEmployee(employee);
       if (imageFile && created?.id) {
         await uploadEmployeeImage(created.id, imageFile);
@@ -144,17 +142,17 @@ export default function Home() {
       <header className="header">
         <div>
           <h1>SDLC Workshop Diretory</h1>
-          <p>Students & Employees</p>
+          <p>Stuents & Empoyees</p>
         </div>
 
-        <span>Powered by Company Name</span>
+        <span>Powered by Minsl</span>
       </header>
 
       <div className="search">
         <FaSearch />
 
         <input
-          placeholder="Search by name, cohort, role or company..."
+          placeholder="Seaaarch by name, cohort, role or company..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -169,7 +167,7 @@ export default function Home() {
 
           <button onClick={openAddStudent}>
             <FaPlus />
-            Add Employee
+            Delete Students
           </button>
         </div>
         <StudentGrid
@@ -182,12 +180,12 @@ export default function Home() {
         <div className="sectionHeader">
           <div>
             <FaBriefcase />
-            <h2>Employees ({filteredEmployees.length})</h2>
+            <h2>Emloyees ({filteredEmployees.length})</h2>
           </div>
 
           <button onClick={openAddEmployee}>
             <FaPlus />
-            Add Employee
+            Add Students
           </button>
         </div>
         <EmployeeGrid

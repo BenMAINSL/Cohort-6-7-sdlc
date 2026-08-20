@@ -22,8 +22,8 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
               {student.firstName} {student.lastName}
             </h3>
 
-            <span className="badge">{student.departmentOrProgramme}</span>
-            <a href={`mailto:${student.email}`}>{student.email}</a>
+            {/* <span className="badge">{student.departmentOrProgramme}</span> */}
+            <span className="badge">Cohot: {student.cohort}</span>
             <p>{student.gender}</p>
           </div>
         </div>
