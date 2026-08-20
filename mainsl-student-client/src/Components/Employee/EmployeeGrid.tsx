@@ -11,6 +11,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
     <div className="grid">
       {employee.map((employee) => (
         <div
+          // Find the "card" class in the CSS and change the background colour here
           className="card"
           key={employee.id}
           onClick={() => onEmployeeClick(employee)}
@@ -18,6 +19,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
           <PersonAvatar person={employee} className="avatar blue" />
 
           <div>
+            {/* Adjust the header size to an appropriate size */}
             <h3>
               {employee.firstName} {employee.lastName}
             </h3>
@@ -26,7 +28,6 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
               {employee.departmentOrProgramme}
             </span>
 
-            {/* Let the mailto link work without also opening the modal. */}
             <a
               href={`mailto:${employee.email}`}
               onClick={(e) => e.stopPropagation()}

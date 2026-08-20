@@ -11,6 +11,7 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
     <div className="grid">
       {students.map((student) => (
         <div
+          // Find the "card" class in the CSS and change the background colour
           className="card"
           key={student.id}
           onClick={() => onStudentClick(student)}
