@@ -1,5 +1,3 @@
-/* page */
-
 * {
   margin: 0;
   padding: 0;
@@ -17,8 +15,6 @@ body {
   min-height: 100vh;
   padding-bottom: 40px;
 }
-
-/* Header */
 
 .header {
   height: 86px;
@@ -47,8 +43,6 @@ body {
   font-size: 15px;
 }
 
-/* Search */
-
 .search {
   margin: 35px auto;
   width: 92%;
@@ -74,8 +68,6 @@ body {
   background: transparent;
 }
 
-/* Sections */
-
 .section {
   width: 92%;
   margin: 0 auto 35px;
@@ -85,13 +77,9 @@ body {
   border: 1px solid #dce3ea;
 }
 
-/* Student Header */
-
 .students .sectionHeader {
   background: #76be53;
 }
-
-/* Employee Header */
 
 .employees .sectionHeader {
   background: #2f5f9f;
@@ -139,28 +127,34 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Grid */
-
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   padding: 20px;
+  align-items: stretch;
 }
 
-/* Cards */
-
 .card {
-  border: 1px solid #d9dfe8;
-  border-radius: 10px;
+  width: 100%;
+  min-width: 0;
+  min-height: 150px;
   padding: 18px;
   display: flex;
-  gap: 18px;
   align-items: flex-start;
-  transition: 0.25s;
+  gap: 18px;
+  border: 1px solid #d9dfe8;
+  border-radius: 10px;
   background: white;
   cursor: pointer;
   overflow: hidden;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.grid .card {
+  height: 100%;
 }
 
 .card:hover {
@@ -168,11 +162,10 @@ body {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* Avatar */
-
 .avatar {
   width: 58px;
   height: 58px;
+  flex: 0 0 58px;
   border-radius: 50%;
   background: #67b245;
   color: white;
@@ -181,16 +174,13 @@ body {
   align-items: center;
   font-size: 22px;
   font-weight: 700;
-  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .avatar.blue {
   background: #285a99;
 }
 
-/* Photos fill the circle without stretching; initials show when absent. */
-
-.avatar,
 .student-avatar {
   overflow: hidden;
 }
@@ -202,12 +192,22 @@ body {
   display: block;
 }
 
-/* Card Text */
+.card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 .card h3 {
+  min-width: 0;
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin: 3px 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card h4 {
@@ -224,29 +224,31 @@ body {
 }
 
 .card a {
-  display: inline-block;
-  color: #2d69c4;
+  display: block;
+  width: 100%;
+  min-width: 0;
   margin-top: 8px;
+  color: #2d69c4;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card a:hover {
   text-decoration: underline;
 }
 
-/* Badge */
-
 .badge {
   display: inline-block;
+  align-self: flex-start;
+  max-width: 100%;
   padding: 6px 14px;
   border-radius: 20px;
   background: #e4f2da;
   color: #4f9243;
   font-weight: 600;
   font-size: 14px;
-  display: inline-block;
-  max-width: 100%;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -254,15 +256,23 @@ body {
 
 .badgeEmployee {
   display: inline-block;
+  max-width: 100%;
   padding: 6px 14px;
   border-radius: 20px;
   background: #daf0f2;
   color: #268bc6;
   font-weight: 600;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Responsive */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 900px) {
   .header {
@@ -283,7 +293,7 @@ body {
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .card {
@@ -295,44 +305,42 @@ body {
   }
 }
 
-/* Overlay */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 130px;
+  }
+}
 
 .student-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.25);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 999;
 }
-
-/* Modal */
 
 .student-modal {
   width: 560px;
   max-width: 94vw;
   max-height: 92vh;
   overflow-y: auto;
-
   background: white;
   border-radius: 8px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
 }
 
-/* Header */
-
 .student-modal-header {
   position: relative;
-
   background: #74b84a;
   color: white;
-
   text-align: center;
   font-weight: 700;
-
   padding: 14px;
   font-size: 18px;
 }
@@ -342,22 +350,17 @@ body {
   top: 50%;
   right: 14px;
   transform: translateY(-50%);
-
   width: 32px;
   height: 32px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 6px;
   color: white;
-
   cursor: pointer;
   font-size: 14px;
-
   transition: 0.2s;
 }
 
@@ -375,8 +378,6 @@ body {
   background: #2f5f9f;
 }
 
-/* Profile */
-
 .student-profile {
   text-align: center;
   padding: 28px;
@@ -385,17 +386,13 @@ body {
 .student-avatar {
   width: 90px;
   height: 90px;
-
   margin: auto;
-
   border-radius: 50%;
   background: #74b84a;
   color: white;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 38px;
   font-weight: bold;
 }
@@ -404,13 +401,10 @@ body {
   background: #2f5f9f;
 }
 
-/* Photo picker (add / edit modal) */
-
 .avatar-picker {
   display: block;
   margin: 0 auto;
   padding: 0;
-
   background: none;
   border: none;
   cursor: pointer;
@@ -433,7 +427,6 @@ body {
 .avatar-picker-hint {
   display: block;
   margin-top: 10px;
-
   color: #6b7684;
   font-size: 13px;
   text-decoration: underline;
@@ -441,7 +434,6 @@ body {
 
 .avatar-picker-note {
   margin-top: 8px;
-
   color: #6b7684;
   font-size: 13px;
 }
@@ -449,11 +441,9 @@ body {
 .link-btn {
   margin-left: 10px;
   padding: 0;
-
   background: none;
   border: none;
   color: #c0392b;
-
   cursor: pointer;
   font-size: 13px;
   text-decoration: underline;
@@ -467,7 +457,6 @@ body {
 .student-profile h2 {
   margin-top: 18px;
   margin-bottom: 6px;
-
   font-size: 32px;
   color: #2c3442;
 }
@@ -477,14 +466,10 @@ body {
   font-size: 15px;
 }
 
-/* Grid */
-
 .student-info-grid {
   margin: 0 28px 25px;
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
@@ -494,7 +479,6 @@ body {
   padding: 18px;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-
   font-size: 9px;
 }
 
@@ -524,15 +508,12 @@ body {
 .info-box input,
 .info-box select {
   width: 100%;
-
   border: 1px solid #cfd6df;
   border-radius: 4px;
-
   padding: 8px 10px;
   font-size: 16px;
   font-family: inherit;
   color: #333;
-
   background: white;
   outline: none;
   transition: 0.2s;
@@ -556,13 +537,10 @@ body {
   font-size: 14px;
 }
 
-/* Footer */
-
 .student-modal-footer {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-
   padding: 0 28px 28px;
 }
 
@@ -570,15 +548,12 @@ body {
   min-width: 90px;
   height: 40px;
   padding: 0 16px;
-
   background: #74b84a;
   border: 1px solid #74b84a;
   border-radius: 4px;
   color: white;
-
   cursor: pointer;
   font-size: 15px;
-
   transition: 0.2s;
 }
 
@@ -595,16 +570,12 @@ body {
   background: #27508a;
 }
 
-/* Delete confirmation */
-
 .delete-confirm {
   margin: 0 28px 28px;
   padding: 16px 18px;
-
   background: #fdf1f0;
   border: 1px solid #f0c6c1;
   border-radius: 6px;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -627,15 +598,12 @@ body {
   min-width: 90px;
   height: 40px;
   padding: 0 16px;
-
   background: #c0392b;
   border: 1px solid #c0392b;
   border-radius: 4px;
   color: white;
-
   cursor: pointer;
   font-size: 15px;
-
   transition: 0.2s;
 }
 
@@ -657,14 +625,11 @@ body {
 .close-btn {
   width: 90px;
   height: 40px;
-
   background: white;
   border: 1px solid #cfcfcf;
   border-radius: 4px;
-
   cursor: pointer;
   font-size: 15px;
-
   transition: 0.2s;
 }
 
@@ -674,7 +639,9 @@ body {
 
 .student-card {
   cursor: pointer;
-  transition: 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .student-card:hover {
