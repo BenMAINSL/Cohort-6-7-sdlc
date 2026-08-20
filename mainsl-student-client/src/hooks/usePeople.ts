@@ -7,7 +7,7 @@ export const usePeople = (personType: PersonType) => {
   const [people, setPeople] = useState<IPerson[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  //
   const getPeople = useCallback(async () => {
     try {
       setLoading(true);
@@ -25,17 +25,19 @@ export const usePeople = (personType: PersonType) => {
     }
   }, [personType]);
 
+  //
   const addPerson = async (person: IPerson) => {
     const { data } = await api.post<IPerson>("/people", person);
     await getPeople();
     return data;
   };
-
+  //
   const updatePerson = async (person: IPerson) => {
     await api.put(`/people/${person.id}`, person);
     await getPeople();
   };
 
+  // we want to add an image
   const uploadImage = async (id: number, file: File) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -46,8 +48,9 @@ export const usePeople = (personType: PersonType) => {
     return data;
   };
 
+  //we want to remove a person from the website
   const deletePerson = async (id: number) => {
-    await api.delete(`/people/${id}`);
+    await api.delete(`/people/${id}`); //remove delete
     await getPeople();
   };
 
