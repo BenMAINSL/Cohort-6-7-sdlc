@@ -88,7 +88,6 @@ export default function Home() {
       await updateStudent(student);
       if (imageFile) await uploadStudentImage(student.id, imageFile);
     } else {
-      // The image endpoint is keyed on id, so the record has to exist first.
       const created = await addStudent(student);
       if (imageFile && created?.id) {
         await uploadStudentImage(created.id, imageFile);
@@ -109,7 +108,7 @@ export default function Home() {
   const openEditEmployee = (employee: IPerson) => {
     setEmployeeFormMode("edit");
     setEmployeeBeingEdited(employee);
-    setSelectedEmployee(null); // swap the details modal out for the form
+    setSelectedEmployee(null);
     setEmployeeFormOpen(true);
   };
 
@@ -134,11 +133,24 @@ export default function Home() {
   };
 
   if (studentsLoading || employeesLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   if (studentsError || employeesError) {
-    return <div>{studentsError || employeesError}</div>;
+    return (
+      <div className="error-page">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>
+          Sorry, we couldn't find the students or employees you're looking for.
+        </p>
+        <button onClick={() => window.location.reload()}>Try Again</button>
+      </div>
+    );
   }
 
   return (
@@ -156,7 +168,7 @@ export default function Home() {
         <FaSearch />
 
         <input
-          placeholder="Search by name, cohort, role or company..."
+          placeholder="Search by name, cohort, role or phase"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

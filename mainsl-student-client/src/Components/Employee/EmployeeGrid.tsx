@@ -18,7 +18,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
         >
           <PersonAvatar person={employee} className="avatar blue" />
 
-          <div>
+          <div className="card-content">
             {/* Adjust the header size to an appropriate size */}
             <h3>
               {employee.firstName} {employee.lastName}
