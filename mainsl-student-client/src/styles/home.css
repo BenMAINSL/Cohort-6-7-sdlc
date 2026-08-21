@@ -230,6 +230,7 @@ body {
   margin-top: 8px;
   color: #2d69c4;
   text-decoration: none;
+  /* fix to prevent long emails from overflowing */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

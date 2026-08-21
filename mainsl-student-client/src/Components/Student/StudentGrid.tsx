@@ -17,12 +17,15 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
         >
           <PersonAvatar person={student} className="avatar" />
 
-          <div>
+          <div className="card-content">
             <h3>
               {student.firstName} {student.lastName}
             </h3>
 
-            <span className="badge">{student.departmentOrProgramme}</span>
+            <span className="badge">
+              {student.departmentOrProgramme}
+            </span>
+
             <a
               href={`mailto:${student.email}`}
               onClick={(e) => e.stopPropagation()}

@@ -53,7 +53,9 @@ export default function Home() {
 
   const filteredStudents = useMemo(() => {
     return students.filter((p) =>
-      `${p.firstName} ${p.lastName} ${p.departmentOrProgramme}`
+      `${p.firstName} ${p.lastName} ${p.departmentOrProgramme} ${
+        p.cohort ?? ""
+      } ${p.phase ?? ""} ${p.email}`
         .toLowerCase()
         .includes(search.toLowerCase()),
     );
@@ -156,7 +158,7 @@ export default function Home() {
         <FaSearch />
 
         <input
-          placeholder="Search by name, cohort, role or company..."
+          placeholder="Search by name, cohort, role or phase..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
