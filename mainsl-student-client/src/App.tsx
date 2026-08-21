@@ -156,7 +156,7 @@ export default function Home() {
         <FaSearch />
 
         <input
-          placeholder="Search by name, cohort, role or company..."
+          placeholder="Search by name, cohort, role or phase..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

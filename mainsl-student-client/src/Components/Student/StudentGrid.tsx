@@ -17,7 +17,7 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
         >
           <PersonAvatar person={student} className="avatar" />
 
-          <div>
+          <div className="card-content">
             <h3>
               {student.firstName} {student.lastName}
             </h3>

@@ -17,7 +17,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
         >
           <PersonAvatar person={employee} className="avatar blue" />
 
-          <div>
+          <div className="card-content">
             <h3>
               {employee.firstName} {employee.lastName}
             </h3>

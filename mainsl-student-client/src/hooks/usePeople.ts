@@ -8,6 +8,8 @@ export const usePeople = (personType: PersonType) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  //LESSOMN 1 APIs
+
   // When naming functions:
   // - Use camelCase
   // - Give the function a meaningful name
@@ -33,45 +35,50 @@ export const usePeople = (personType: PersonType) => {
     }
   }, [personType]);
 
+  //1
+
   //This function will be used to submit a new person (Student or Employee)
 
-  // Question:
-  // What would be a meaningful name for this function?
-
-  const addPerson = async (person: IPerson) => {
+  const functionName = async (person: IPerson) => {
     // This is responsible for communicating with the API using the appropriate HTTP request.
-    const { data } = await api.post<IPerson>("/people", person);
+    const { data } = await api.httpmethod<IPerson>("/people", person);
     await getPeople();
     return data;
   };
 
-  //This fuction is responsible for modifying an already existing person (Student or Employee)
-  // Question:
-  // What would be a meaningful name for this function?
+  //2
 
-  const updatePerson = async (person: IPerson) => {
+  //This fuction is responsible for modifying an already existing person (Student or Employee)
+
+  const fuctionName = async (person: IPerson) => {
     // This is responsible for communicating with the API using the appropriate HTTP request.
-    await api.put(`/people/${person.id}`, person);
+    await api.httpmethod(`/people/${person.id}`, person);
     await getPeople();
   };
 
+  //3
+
   //This function is responsible for adding an image to a specific person (Student or Employee)
-  const uploadImage = async (id: number, file: File) => {
+  const functionName = async (id: number, file: File) => {
     const formData = new FormData();
     formData.append("file", file);
 
     // This is responsible for communicating with the API using the appropriate HTTP request.
-    const { data } = await api.post<IPerson>(`/people/${id}/image`, formData);
+    const { data } = await api.httpmethod<IPerson>(
+      `/people/${id}/image`,
+      formData,
+    );
 
     await getPeople();
     return data;
   };
 
+  //4
   //This Function is responsible for removing a person from the API
 
-  const deletePerson = async (id: number) => {
+  const functionName = async (id: number) => {
     // This is responsible for communicating with the API using the appropriate HTTP request.
-    await api.delete(`/people/${id}`); //remove delete
+    await api.htttpmethod(`/people/${id}`);
     await getPeople();
   };
 
