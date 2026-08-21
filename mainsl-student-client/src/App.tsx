@@ -130,11 +130,24 @@ export default function Home() {
   };
 
   if (studentsLoading || employeesLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   if (studentsError || employeesError) {
-    return <div>{studentsError || employeesError}</div>;
+    return (
+      <div className="error-page">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>
+          Sorry, we couldn't find the students or employees you're looking for.
+        </p>
+        <button onClick={() => window.location.reload()}>Try Again</button>
+      </div>
+    );
   }
 
   return (
