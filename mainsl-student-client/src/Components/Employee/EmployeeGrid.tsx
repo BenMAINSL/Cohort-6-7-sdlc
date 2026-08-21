@@ -24,7 +24,6 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
 
             <span className="badgeEmployee">{employee.personType}</span>
 
-            {/* Let the mailto link work without also opening the modal. */}
             <a
               href={`mailto:${employee.email}`}
               onClick={(e) => e.stopPropagation()}
