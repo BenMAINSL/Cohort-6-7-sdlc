@@ -19,6 +19,7 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
           <PersonAvatar person={student} className="avatar" />
 
           <div>
+            {/* Adjust the header size to an appropriate size */}
             <h3>
               {student.firstName} {student.lastName}
             </h3>
