@@ -11,7 +11,7 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
     <div className="grid">
       {employee.map((employee) => (
         <div
-          // Find the "card" class in the CSS and change the background colour here
+          // Find the "card" class in the CSS and change the background colour and other styles to make it match the wireframe design. You can also add hover effects and transitions to make it more interactive.
           className="card"
           key={employee.id}
           onClick={() => onEmployeeClick(employee)}
@@ -19,10 +19,10 @@ const EmployeeGrid = ({ employee, onEmployeeClick }: EmployeeGridProps) => {
           <PersonAvatar person={employee} className="avatar blue" />
 
           <div>
-            {/* Adjust the header size to an appropriate size */}
-            <h3>
+            {/* Adjust the header size to an appropriate size to match the wireframe design */}
+            <h6>
               {employee.firstName} {employee.lastName}
-            </h3>
+            </h6>
 
             <span className="badgeEmployee">
               {employee.departmentOrProgramme}

@@ -11,7 +11,7 @@ const StudentGrid = ({ students, onStudentClick }: StudentGridProps) => {
     <div className="grid">
       {students.map((student) => (
         <div
-          // Find the "card" class in the CSS and change the background colour
+          // Find the "card" class in the CSS and change the background colour and other styles to make it match the wireframe design. You can also add hover effects and transitions to make it more interactive.
           className="card"
           key={student.id}
           onClick={() => onStudentClick(student)}
