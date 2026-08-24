@@ -214,14 +214,14 @@ body {
 }
 
 .card h4 {
-  color: #5d6776;
+  color: #4270b7;
   font-size: 18px;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
 .card p {
-  color: #687483;
+  color: #44d3d3;
   font-size: 16px;
   margin-top: 8px;
 }
@@ -231,7 +231,7 @@ body {
   width: 100%;
   min-width: 0;
   margin-top: 8px;
-  color: #2d69c4;
+  color: #31ce72;
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
@@ -248,8 +248,8 @@ body {
   max-width: 100%;
   padding: 6px 14px;
   border-radius: 20px;
-  background: #e4f2da;
-  color: #4f9243;
+  background: #592e3d;
+  color: #357777;
   font-weight: 600;
   font-size: 14px;
   overflow: hidden;
@@ -262,8 +262,8 @@ body {
   max-width: 100%;
   padding: 6px 14px;
   border-radius: 20px;
-  background: #daf0f2;
-  color: #268bc6;
+  background: #63a3a8;
+  color: #3b464d;
   font-weight: 600;
   font-size: 14px;
   overflow: hidden;
